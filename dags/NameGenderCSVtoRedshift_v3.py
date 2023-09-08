@@ -10,8 +10,8 @@ import psycopg2
 
 def get_Redshift_connection():
     host = "learnde.cduaw970ssvt.ap-northeast-2.redshift.amazonaws.com"
-    redshift_user = "keeyong"  # 본인 ID 사용
-    redshift_pass = "..."  # 본인 Password 사용
+    redshift_user = "sungwoodat99"  # 본인 ID 사용
+    redshift_pass = "####"  # 본인 Password 사용
     port = 5439
     dbname = "dev"
     conn = psycopg2.connect(f"dbname={dbname} user={redshift_user} host={host} password={redshift_pass} port={port}")
@@ -32,6 +32,7 @@ def extract(**context):
 def transform(**context):
     logging.info("Transform started")    
     text = context["task_instance"].xcom_pull(key="return_value", task_ids="extract")
+    # extract라는 id를 갖는 task가 return해준 값을 읽어다오 (필요할때 copy)
     lines = text.strip().split("\n")[1:] # 첫 번째 라인을 제외하고 처리
     records = []
     for l in lines:
@@ -47,6 +48,7 @@ def load(**context):
     table = context["params"]["table"]
 
     lines = context["task_instance"].xcom_pull(key="return_value", task_ids="transform")
+    # transform라는 id를 갖는 task가 return해준 값을 읽어다오 (필요할때 copy)
     """
     records = [
       [ "Keeyong", "M" ],
