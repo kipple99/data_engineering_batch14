@@ -74,6 +74,7 @@ def etl(**context):
     execution_date = context['execution_date']
 
     logging.info(execution_date)
+    # excution_date를 한번 찍어봄
 
     data = extract(link)
     lines = transform(data)
