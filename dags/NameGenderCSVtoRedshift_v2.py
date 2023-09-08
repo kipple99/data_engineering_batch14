@@ -11,8 +11,8 @@ import psycopg2
 
 def get_Redshift_connection():
     host = "learnde.cduaw970ssvt.ap-northeast-2.redshift.amazonaws.com"
-    redshift_user = "keeyong"  # 본인 ID 사용
-    redshift_pass = "..."  # 본인 Password 사용
+    redshift_user = "sungwoodat99"  # 본인 ID 사용
+    redshift_pass = "Sungwoodat99!1"  # 본인 Password 사용
     port = 5439
     dbname = "dev"
     conn = psycopg2.connect(f"dbname={dbname} user={redshift_user} host={host} password={redshift_pass} port={port}")
@@ -47,7 +47,7 @@ def load(records):
       ...
     ]
     """
-    schema = "keeyong"
+    schema = "sungwoodat99"
     # BEGIN과 END를 사용해서 SQL 결과를 트랜잭션으로 만들어주는 것이 좋음
     cur = get_Redshift_connection()
     try:
@@ -98,5 +98,5 @@ task = PythonOperator(
     python_callable = etl,
     params = {
         'url': "https://s3-geospatial.s3-us-west-2.amazonaws.com/name_gender.csv"
-    },
+    }, # csv라는 링크를 v1에선 하드코딩, v2에선 파이썬 operator 쪽에서 넘겨줌. params로 받음.
     dag = dag)
