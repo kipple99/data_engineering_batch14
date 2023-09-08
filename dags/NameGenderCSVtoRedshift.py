@@ -43,7 +43,7 @@ def load(records):
       ...
     ]
     """
-    schema = "keeyong"
+    schema = "sungwoodat99"
     # BEGIN과 END를 사용해서 SQL 결과를 트랜잭션으로 만들어주는 것이 좋음
     cur = get_Redshift_connection()
     try:
