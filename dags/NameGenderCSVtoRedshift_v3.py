@@ -105,7 +105,7 @@ load = PythonOperator(
     task_id = 'load',
     python_callable = load,
     params = {
-        'schema': 'keeyong',
+        'schema': 'sungwoodat99',
         'table': 'name_gender'
     },
     dag = dag)
