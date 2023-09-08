@@ -68,4 +68,4 @@ with DAG(
 ) as dag:
 
     results = get_historical_prices("AAPL")
-    load("keeyong", "stock_info", results)
+    load("sungwoodat99", "stock_info", results) # schema / table / load 해야하는 것
