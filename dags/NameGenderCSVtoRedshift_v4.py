@@ -13,7 +13,9 @@ import psycopg2
 
 
 
-def get_Redshift_connection(autocommit=True):
+def get_Redshift_connection(autocommit=True): 
+    # airflow에서 만든 connection 정보 바로 get 보안
+    # 코드 간단 / 보안이슈 해결결
     hook = PostgresHook(postgres_conn_id='redshift_dev_db')
     conn = hook.get_conn()
     conn.autocommit = autocommit
@@ -110,7 +112,7 @@ load = PythonOperator(
     task_id = 'load',
     python_callable = load,
     params = {
-        'schema': 'keeyong',   ## 자신의 스키마로 변경
+        'schema': 'sungwoodat99',   ## 자신의 스키마로 변경
         'table': 'name_gender'
     },
     dag = dag)
